@@ -1,8 +1,16 @@
-const { fromJS, isImmutable } = require('immutable');
+const { fromJS, isImmutable, Iterable } = require('immutable');
+
 function getImmutableObject(object) {
-  if (typeof object !== 'object' || object === null || isImmutable(object)) {
+
+  if (!Iterable.isIterable(object)) {
+
     return null;
+
   }
+
   return fromJS(object);
+
 }
+
 module.exports = getImmutableObject;
+
