@@ -1,17 +1,29 @@
-const { fromJS, Seq } = require('immutable');
+const { Seq } = require('immutable');
 
-function printBestStudents(grades) {
+function printBestStudents(students) {
 
-  const filteredGrades = Seq(grades)
+  const filteredStudents = Seq(students)
 
-    .filter(student => student.get('score') >= 70)
+    .filter((student) => student.get('score') >= 70)
 
-    .map(student => student.update('firstName', firstName => firstName.charAt(0).toUpperCase() + firstName.slice(1)))
+    .map((student) => student.update('firstName', (name) => capitalizeFirstLetter(name)))
 
-    .map(student => student.update('lastName', lastName => lastName.charAt(0).toUpperCase() + lastName.slice(1)));
+    .map((student) => student.update('lastName', (name) => capitalizeFirstLetter(name)))
 
-  console.log(filteredGrades.toJS());
+    .toObject();
+
+  console.log(filteredStudents);
 
 }
 
-module.exports = printBestStudents;
+function capitalizeFirstLetter(string) {
+
+  return string.charAt(0).toUpperCase() + string.slice(1);
+
+
+
+module.exports = {
+
+  printBestStudents
+
+};
