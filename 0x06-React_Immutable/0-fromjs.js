@@ -1,16 +1,7 @@
-const { fromJS, isImmutable, Iterable } = require('immutable');
+// import { fromJS } from 'immutable';
 
-function getImmutableObject(object) {
+import { fromJS } from './node_modules/immutable/dist/immutable';
 
-  if (!Iterable.isIterable(object)) {
+const getImmutableObject = (object) => fromJS(object);
 
-    return null;
-
-  }
-
-  return fromJS(object);
-
-}
-
-module.exports = getImmutableObject;
-
+export default getImmutableObject;
